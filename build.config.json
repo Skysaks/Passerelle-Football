@@ -1,0 +1,161 @@
+{
+  "name": "Passerelle Football",
+  "repo": "Skysaks/Passerelle-Football",
+  "lang": "fr",
+  "budgetKo": 700,
+  "pages": [
+    {
+      "src": "src/index.html",
+      "out": "dist/passerelle-football.html",
+      "site": "index.html",
+      "e2e": {
+        "ready": "main",
+        "flows": [
+          {
+            "name": "toutes les pages du joueur",
+            "only": "bureau",
+            "steps": [
+              {
+                "click": "nav a[href=\"#profil\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#stats\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#videos\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#debouches\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#suivi\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#messages\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#offres\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#audience\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#dossier\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#eligibilite\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#formation\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#avantages\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#partage\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#parrainage\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#abonnement\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#donnees\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#apparence\"]:visible",
+                "wait": 150
+              },
+              {
+                "click": "nav a[href=\"#accueil\"]:visible",
+                "wait": 150
+              }
+            ]
+          },
+          {
+            "name": "points de vue entraîneur et recruteur",
+            "only": "bureau",
+            "steps": [
+              {
+                "click": "[data-action=role][data-arg=entraineur]"
+              },
+              {
+                "see": "main h1"
+              },
+              {
+                "click": "[data-action=role][data-arg=recruteur]"
+              },
+              {
+                "see": "main h1"
+              },
+              {
+                "click": "[data-action=role][data-arg=joueur]"
+              }
+            ]
+          },
+          {
+            "name": "palette de commandes",
+            "steps": [
+              {
+                "click": "[data-action=palette]"
+              },
+              {
+                "press": "Escape"
+              }
+            ]
+          },
+          {
+            "name": "barre d'onglets mobile",
+            "only": "mobile",
+            "steps": [
+              {
+                "click": "a[href=\"#profil\"]:visible"
+              },
+              {
+                "click": "a[href=\"#stats\"]:visible"
+              },
+              {
+                "click": "a[href=\"#videos\"]:visible"
+              },
+              {
+                "click": "[data-action=moreMenu]:visible"
+              },
+              {
+                "press": "Escape"
+              },
+              {
+                "click": "a[href=\"#accueil\"]:visible"
+              }
+            ]
+          }
+        ]
+      },
+      "captures": {
+        "wait": 2000
+      }
+    }
+  ],
+  "card": {
+    "kicker": "Football · recrutement",
+    "tagline": "Un profil fait de preuves : vidéo analysée, matchs validés par l'entraîneur.",
+    "background": "#0E1714",
+    "accent": "#16A673"
+  }
+}

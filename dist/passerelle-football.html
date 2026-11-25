@@ -1,9 +1,13 @@
 <!DOCTYPE html>
+<!-- Passerelle Football · © 2026 Florian Iglesias — Tous droits réservés · https://github.com/Skysaks/Passerelle-Football -->
 <html lang="fr">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Passerelle Football</title>
+<title>Passerelle Football — du terrain amateur au recrutement</title>
+<meta name="description" content="Passerelle Football : la plateforme qui relie joueurs amateurs, entraîneurs et recruteurs autour de preuves vérifiables — vidéo analysée, feuilles de match validées par l'entraîneur, profil public et parcours vers le recrutement.">
+<meta name="theme-color" content="#0B6B4D">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230B6B4D'/%3E%3Ctext x='32' y='44' font-family='-apple-system,Segoe UI,Helvetica,Arial,sans-serif' font-size='34' font-weight='700' text-anchor='middle' fill='%23FFFFFF'%3EP%3C/text%3E%3C/svg%3E">
 <style>
 :root{
   /* Palette : vert gazon profond, neutres légèrement verdis. Layout : rail latéral fixe + espace de travail en cartes. */
@@ -1518,7 +1522,7 @@ document.addEventListener('keydown', e => {
 $('#modal').addEventListener('click', e => { if (e.target.id === 'modal') closeModal(); });
 window.addEventListener('hashchange', render);
 
-/* ========== V2 : médias, offres, audience, dossier, détections, services, modèle économique ========== */
+/* ========== Médias, offres, audience, dossier, détections, services, modèle économique ========== */
 const IDB = {
   db:null,
   open() { return new Promise((res, rej) => { if (this.db) return res(this.db); let r; try { r = indexedDB.open('passerelle-media', 1); } catch (e) { return rej(e); } r.onupgradeneeded = () => r.result.createObjectStore('blobs'); r.onsuccess = () => { this.db = r.result; res(this.db); }; r.onerror = () => rej(r.error); }); },
@@ -1555,7 +1559,7 @@ function payModal(label, amount, cur, onPaid, detail) {
 }
 function bill(label, amount, cur) { state.billing.unshift({id:uid(), date:today(), label, amount, cur:cur || 'EUR'}); }
 
-/* ---------- Migration et données d'exemple V2 ---------- */
+/* ---------- Migration et données d'exemple : médias et offres ---------- */
 function migrate(s) {
   const P0 = s.player;
   const fill = p => { if (!p.videos) p.videos = []; if (!p.docs) p.docs = {}; if (!p.verified) p.verified = {identity:false}; if (p.testsCertified === undefined) p.testsCertified = null; if (p.videosVerified === undefined) p.videosVerified = false; if (!p.guardian) p.guardian = {name:'', email:'', phone:''}; if (p.guardian.consent === undefined) p.guardian.consent = false; };
@@ -1845,7 +1849,7 @@ function vBusiness() {
   </div></section>`;
 }
 
-/* ---------- Actions V2 ---------- */
+/* ---------- Actions : médias, offres, abonnements ---------- */
 Object.assign(ACT, {
   goPlans(role) { $('#modal').hidden = true; $('#modal').innerHTML = ''; location.hash = PLAN_ROUTE[role || state.role]; render(); },
   payConfirm() { const f = ui.pay; ui.pay = null; $('#modal').hidden = true; $('#modal').innerHTML = ''; if (f) f(); save(); render(); },
@@ -1942,7 +1946,7 @@ document.addEventListener('play', e => {
   if (state.role === 'recruteur' && v.dataset.owner === 'me') { const start = Date.now(); logView('video', 'me', v.dataset.vid); const rec = state.views[0]; v.addEventListener('pause', () => { rec.seconds = n0(rec.seconds) + Math.round((Date.now() - start) / 1000); save(); }, {once:true}); }
 }, true);
 
-/* ========== V3 : partenariats, affiliation, parrainage, ambassadeurs, académie, accès solidaire, organisations, opérateur ========== */
+/* ========== Partenariats, affiliation, parrainage, ambassadeurs, académie, accès solidaire, organisations, opérateur ========== */
 ROLE_LABEL.operateur = 'Opérateur';
 HOME.operateur = 'op-accueil';
 NAV.operateur = [['op-accueil','Pilotage'],['op-partenariats','Partenariats'],['op-validation','Validations'],['op-ambassadeurs','Ambassadeurs']];
@@ -2159,7 +2163,7 @@ function vBusinessV3() {
 }
 const vAbonnementV2 = vAbonnement;
 
-/* ---------- Actions V3 ---------- */
+/* ---------- Actions : partenariats et organisations ---------- */
 Object.assign(ACT, {
   perkReveal(id) { const k = state.perks.find(x => x.id === id); k.clicks++; ui.revealed = ui.revealed || {}; ui.revealed[id] = true; save(); render(); copyText(k.code); },
   perkUsed(id) { const k = state.perks.find(x => x.id === id); k.conv++; save(); toast('Merci ! En production, la conversion est confirmée par le réseau d’affiliation du partenaire.'); render(); },
@@ -2185,7 +2189,7 @@ Object.assign(ACT, {
 });
 Object.assign(VIEWS, {avantages:vAvantages, parrainage:vParrainage, formation:vFormation, organisations:vOrganisations, business:vBusinessV3, abonnement:() => vAbonnementV2() + solidarityHTML(), 'op-accueil':vOpAccueil, 'op-partenariats':vOpPartenariats, 'op-validation':vOpValidation, 'op-ambassadeurs':vOpAmbassadeurs});
 
-/* ========== V4 : UX, lisibilité, accessibilité ========== */
+/* ========== UX, lisibilité, accessibilité ========== */
 const ICONS = {
   home:'M3 11l9-7 9 7v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z', user:'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',
   video:'M4 6h11a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1zM16 10l5-3v10l-5-3', compass:'M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM15.5 8.5l-2 5-5 2 2-5z',
@@ -2461,7 +2465,7 @@ render = function () { renderV3(); afterRender(); };
 const refreshLiveV3 = refreshLive;
 refreshLive = function () { refreshLiveV3(); markMissing(); };
 
-/* ===================== V5 : moteur vidéo, données d'entraînement, finitions ===================== */
+/* ===================== Moteur vidéo, données d'entraînement, finitions ===================== */
 const ENGINE_FORMAT = 'passerelle.touches/1';
 const REJECT_REASONS = [['pas-moi', 'Ce n’est pas moi'], ['pas-action', 'Pas d’action'], ['decale', 'Mauvais moment'], ['doublon', 'Doublon']];
 const ENGINE_STEPS = [
@@ -2701,7 +2705,7 @@ function migrate5(s) {
 const migrateV4 = migrate;
 migrate = s => migrate5(migrateV4(s));
 
-/* ===================== V6-A : preuves, statistiques, moteur V0.2 ===================== */
+/* ===================== Preuves, statistiques, moteur V0.2 ===================== */
 // Nouveaux types d'actions produits par le moteur V0.2
 CLIP_TYPES.push(['passe', 'Passe', '', '#2c6e63'], ['conduite', 'Conduite de balle', '', '#7a5c1e'], ['controle', 'Contrôle', '', '#4c5e6b']);
 const ENGINE_TYPE_MAP = {passe:'passe', conduite:'conduite', frappe:'tir', controle:'controle', touche:'touche'};
@@ -3017,7 +3021,7 @@ function migrate6(s) {
 const migrateV5 = migrate;
 migrate = s => migrate6(migrateV5(s));
 
-/* ===================== V6-B : profil public séduisant et personnalisable ===================== */
+/* ===================== Profil public séduisant et personnalisable ===================== */
 const PROFILE_ACCENTS = [['gazon', 'Gazon', '#0b6b4d'], ['ocean', 'Océan', '#1f4fbf'], ['brique', 'Brique', '#b03a24'], ['violet', 'Violet', '#6a3fc4'], ['or', 'Or', '#8a5a00'], ['nuit', 'Nuit', '#1d2a44']];
 const PROFILE_SECTIONS_V6 = [['video', 'Vidéo'], ['why', 'Pourquoi moi'], ['numbers', 'Chiffres'], ['radar', 'Profil et zones'], ['clips', 'Actions filmées'], ['history', 'Parcours'], ['academics', 'Scolarité'], ['physical', 'Tests physiques'], ['reference', 'Référence'], ['proof', 'Preuves'], ['contact', 'Contact']];
 const FEATURE_CHOICES = [['distance90', 'Distance / 90'], ['passAcc', 'Passes réussies'], ['top', 'Vitesse max'], ['sprints90', 'Sprints / 90'], ['ga90', 'Buts + PD / 90'], ['carries90', 'Conduites / 90'], ['sprint30', 'Sprint 30 m'], ['vma', 'VMA'], ['goals', 'Buts (saison)'], ['assists', 'Passes déc. (saison)'], ['minutes', 'Minutes (saison)'], ['height', 'Taille']];
@@ -3246,7 +3250,7 @@ profileExportHTML = function () {
   return `<!DOCTYPE html><html lang="${esc(L.lang || 'en')}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${esc(p.firstName)} ${esc(p.lastName)} · ${L.lang === 'fr' ? 'Profil de recrutement' : L.lang === 'es' ? 'Perfil de reclutamiento' : 'Recruiting profile'}</title><style>body{margin:0;background:#eef2f0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}main{max-width:880px;margin:24px auto;padding:0 12px}.tiny{font-size:.75rem}.muted{color:#55625d}${PP2_CSS}</style></head><body><main>${profileDoc(p, {export:true})}</main></body></html>`;
 };
 
-/* ===================== V6-C : vidéo (projecteur, ralenti, annotation, studio, chapitres) ===================== */
+/* ===================== Vidéo (projecteur, ralenti, annotation, studio, chapitres) ===================== */
 const VIDEO_TYPES_V6 = ['Temps forts', 'Match complet', 'Format vertical (réseaux)', 'Séquence technique', 'Entraînement', 'Coups de pied arrêtés', 'Tests physiques', 'Présentation en anglais', 'Interview'];
 const VT_EN = {'Temps forts':'Highlights', 'Match complet':'Full match', 'Format vertical (réseaux)':'Vertical cut', 'Séquence technique':'Technical skills', 'Entraînement':'Training', 'Coups de pied arrêtés':'Set pieces', 'Tests physiques':'Physical testing', 'Présentation en anglais':'Introduction (English)', 'Interview':'Interview'};
 
@@ -3507,7 +3511,7 @@ publicVideosHTML = function (p, exp) {
   return html;
 };
 
-/* ===================== V6-D : apparence, accueil personnalisable, objectif ===================== */
+/* ===================== Apparence, accueil personnalisable, objectif ===================== */
 const ACCENTS = [['gazon', 'Gazon'], ['ocean', 'Océan'], ['brique', 'Brique'], ['violet', 'Violet'], ['or', 'Or'], ['graphite', 'Graphite']];
 const PREF_OPTS = {
   density:[['confort', 'Confortable'], ['compact', 'Compacte']],
@@ -3614,7 +3618,7 @@ function migrate7(s) { if (s.schema >= 7) return s; if (s.player && !s.player.tr
 const migrateV6 = migrate;
 migrate = s => migrate7(migrateV6(s));
 
-/* ===================== V7-A : moteurs de la plateforme ===================== */
+/* ===================== Moteurs de la plateforme ===================== */
 /* ---------- Version des données : sert à mettre en cache les calculs lourds ---------- */
 let DATA_V = 0; const MO_CACHE = new Map();
 const saveV6b = save; save = function () { DATA_V++; MO_CACHE.clear(); return saveV6b.apply(this, arguments); };
@@ -3783,7 +3787,7 @@ function migrate8(s) {
 const migrateV7 = migrate;
 migrate = s => migrate8(migrateV7(s));
 
-/* ===================== V7-B : rapport de match, QR code, validation par l'entraîneur ===================== */
+/* ===================== Rapport de match, QR code, validation par l'entraîneur ===================== */
 /* ---------- QR code (mode octet, correction M, versions 1 à 10), sans dépendance ---------- */
 const QR = (() => {
   const EXP = new Array(512), LOG = new Array(256);

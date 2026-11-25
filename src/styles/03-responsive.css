@@ -1,0 +1,38 @@
+/* Responsive */
+html{scrollbar-gutter:stable;-webkit-text-size-adjust:100%;text-size-adjust:100%}
+body{overflow-wrap:break-word}
+.main{container:main / inline-size}
+.grid>*,.stack>*,.row>*,.prog>*{min-width:0}
+.num,.kpi b,td.num,.score,.savest,.cnt{font-variant-numeric:tabular-nums}
+.btn{max-width:100%}
+.savest{min-width:6.75rem;text-align:right}
+.video-wrap{aspect-ratio:16/9}
+.split{grid-template-columns:minmax(0,1.6fr) minmax(17.5rem,1fr);align-items:start}
+@container main (max-width:68rem){.g4{grid-template-columns:repeat(2,minmax(0,1fr))} .g3{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@container main (max-width:60rem){.split{grid-template-columns:minmax(0,1fr)}}
+@container main (max-width:46rem){.g2{grid-template-columns:minmax(0,1fr)}}
+@container main (max-width:40rem){
+  .g3{grid-template-columns:minmax(0,1fr)} .g4{gap:10px}
+  .btn{white-space:normal;text-align:center}
+  .prog{grid-template-columns:auto minmax(0,1fr)} .prog>.actions{grid-column:1/-1;flex-direction:row!important;flex-wrap:wrap}
+  .secnav .chipnav,.secnav>.btn{display:none} .secnav .sec-compact{display:flex}
+}
+@container main (max-width:22rem){.g4{grid-template-columns:minmax(0,1fr)}}
+.secnav{flex-wrap:wrap;overflow:visible}
+.sec-compact{display:none;align-items:center;gap:8px;width:100%}
+.sec-compact select{flex:1;min-width:0}
+.sec-compact .btn{flex:none}
+.asteps{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-direction:column;gap:10px}
+.astep{display:grid;grid-template-columns:1.5rem minmax(0,1fr);gap:10px;align-items:start}
+.adot{width:1.5rem;height:1.5rem;border-radius:50%;border:2px solid var(--line);display:grid;place-items:center;font-size:.8125rem;font-weight:700;color:#fff}
+.astep.done .adot{background:var(--ok);border-color:var(--ok)}
+.linkbtn{background:none;border:0;padding:0;color:var(--accent);font:inherit;text-decoration:underline;cursor:pointer}
+.choicegrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,11rem),1fr));gap:8px}
+.choicegrid .btn{min-height:3rem;white-space:normal}
+.guide{margin:0;padding-left:1.25rem;display:flex;flex-direction:column;gap:8px}
+.pill{max-width:100%;white-space:normal}
+@media (max-width:900px){.savest{min-width:0}}
+@media (max-width:420px){.tb-brand .pill{display:none}}
+@media (max-width:360px){.tb-brand b{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)} .topbar{gap:6px;padding-inline:10px}}
+.pp table{width:100%;table-layout:fixed} .pp th,.pp td{overflow-wrap:anywhere}
+@container main (max-width:40rem){.clip{grid-template-columns:auto minmax(0,1fr)} .clip>.actions{grid-column:1/-1;justify-content:flex-start;flex-wrap:wrap}}
