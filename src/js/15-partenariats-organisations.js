@@ -22,7 +22,7 @@ const ACADEMY_PRICE = 49;
 function migrate3(s) {
   if (s.schema >= 3) return s;
   const P0 = s.player;
-  if (!P0.referral) P0.referral = {code:(P0.firstName || 'JOUEUR').toUpperCase().slice(0, 6) + '-' + (hashStr(P0.id + P0.lastName) % 9000 + 1000), invites: P0.demo ? [{id:uid(), name:'Hugo F.', email:'hugo@exemple.fr', status:'Pro', date:'2026-10-21'},{id:uid(), name:'Nathan B.', email:'nathan@exemple.fr', status:'Inscrit', date:'2026-11-09'},{id:uid(), name:'Enzo M.', email:'enzo@exemple.fr', status:'Invité', date:'2026-11-19'}] : []};
+  if (!P0.referral) P0.referral = {code:(P0.firstName || 'JOUEUR').toUpperCase().slice(0, 6) + '-' + (hashStr(P0.id + P0.lastName) % 9000 + 1000), invites: P0.demo ? [{id:uid(), name:'Hugo F.', email:'hugo@example.com', status:'Pro', date:'2026-10-21'},{id:uid(), name:'Nathan B.', email:'nathan@example.com', status:'Inscrit', date:'2026-11-09'},{id:uid(), name:'Enzo M.', email:'enzo@example.com', status:'Invité', date:'2026-11-19'}] : []};
   if (!P0.academy) P0.academy = {owned:false, done: P0.demo ? {m1:true, m2:true} : {}};
   s.perks = s.perks || [
     {id:'k1', cat:'Prêt à partir', name:'AssurÉtudes Monde', what:'Assurance santé pour études à l’étranger', offer:'5 % de remise', proOffer:'10 % de remise', model:'Commission sur la prime', avg:60, clicks:14, conv:2, code:'PASS-ASSUR'},

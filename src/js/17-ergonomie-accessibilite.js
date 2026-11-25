@@ -120,7 +120,7 @@ document.addEventListener('input', e => { const el = e.target; if (el.dataset &&
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 function guard(name, check) { const orig = ACT[name]; ACT[name] = function (...a) { if (check(...a) === false) return; return orig.apply(this, a); }; }
 guard('saveVideoLink', () => /^https?:\/\/\S+$/.test(($('#vl_url') || {}).value || '') || invalid('vl_url', 'Colle un lien complet, commençant par https://'));
-guard('invite', () => (($('#inv_n') || {}).value || '').trim() ? (EMAIL.test((($('#inv_e') || {}).value || '').trim()) || invalid('inv_e', 'Indique une adresse e-mail valide, par exemple prenom@exemple.fr')) : invalid('inv_n', 'Indique le prénom de ton filleul.'));
+guard('invite', () => (($('#inv_n') || {}).value || '').trim() ? (EMAIL.test((($('#inv_e') || {}).value || '').trim()) || invalid('inv_e', 'Indique une adresse e-mail valide, par exemple prenom@example.com')) : invalid('inv_n', 'Indique le prénom de ton filleul.'));
 guard('orgLead', () => (($('#org_n') || {}).value || '').trim() ? (EMAIL.test((($('#org_e') || {}).value || '').trim()) || invalid('org_e', 'Indique une adresse e-mail valide.')) : invalid('org_n', 'Indique le nom de l’organisation.'));
 guard('createPlayer', () => (($('#np_f') || {}).value || '').trim() ? ((($('#np_l') || {}).value || '').trim() ? true : invalid('np_l', 'Indique le nom du joueur.')) : invalid('np_f', 'Indique le prénom du joueur.'));
 guard('solSend', () => (($('#sol_m') || {}).value || '').trim() ? true : invalid('sol_m', 'Écris quelques lignes : elles aident à attribuer les places.'));

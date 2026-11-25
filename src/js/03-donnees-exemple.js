@@ -18,7 +18,7 @@ function staff(name, role, email, phone, languages, notes) { return {id:uid(), n
 function prog(o) { return Object.assign({id:uid(), demo:true, name:'', type:'Université', org:'', country:'', region:'', city:'', gender:'Masculin', conference:'', website:'', rosterSize:'', intlShare:'', currency:'USD', costAnnual:'', avgAid:'', gpaMin:'', englishRequired:true, englishMin:'', majors:'', deadline:'', facilities:'', notes:'', verifiedAt:'', sourceUrl:'', needs:{}, staff:[]}, o); }
 
 function demoState() {
-  const me = P({id:'me', demo:true, firstName:'Lucas', lastName:'Martin', gender:'Homme', birthDate:'2007-05-14', nationality:'Française', city:'Toulouse', country:'France', languages:'Français, anglais (B2), espagnol (A2)', email:'lucas.martin@exemple.fr', phone:'06 00 00 00 00',
+  const me = P({id:'me', demo:true, firstName:'Lucas', lastName:'Martin', gender:'Homme', birthDate:'2007-05-14', nationality:'Française', city:'Toulouse', country:'France', languages:'Français, anglais (B2), espagnol (A2)', email:'lucas.martin@example.com', phone:'06 00 00 00 00',
     position:'Milieu central', position2:'Milieu défensif', foot:'Droit', height:180, weight:72, club:'US Exemple Toulouse', level:'n3', league:'National 3, groupe Occitanie', jersey:8, teamId:'team1',
     stats:{season:'2025-2026', matches:26, minutes:2140, goals:5, assists:7, cleanSheets:''},
     physical:{sprint30:4.05, vma:18.5, jump:55, yoyo:'19.2', testDate:'2026-09-12'},
